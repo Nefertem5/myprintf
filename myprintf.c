@@ -3,16 +3,33 @@
 int		ft_printf1(va_list list, const char *format, specifier_t spec_list[])
 {
 	int result;
+	int i;
+	int a;
 
+	i = 0;
+	a = 0;
 	result = 0;
-	while (*format)
+	while (format[i])
 	{
-		if (*format == '%')
+		if (format[i] == '%')
 		{
-			
-			format++;
+			a = 0;
+			while (spec_list[a].symbol != NULL)
+			{
+
+				a++:
+			}
+			if (spec_list[a].symbol == NULL)
+			{
+
+			}
+			i++;
 		}
-		format++;
+		else
+		{
+			result++;
+		}
+		i++;
 	}
 	return (result);
 }

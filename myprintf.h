@@ -8,7 +8,7 @@
 
 struct specifier
 {
-	char *sym;
+	char *symbol;
 	int (*f)(va_list);
 };
 typedef struct specifier specifier_t;
