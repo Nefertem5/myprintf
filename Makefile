@@ -8,7 +8,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/
-	ar -rcs $(NAME) $(OBJ)
+	#ar -rcs $(NAME) $(OBJ)
+	$(CC) $(FLAGS) -o test $(OBJ) -L libft/ -lft
+
 
 %.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@ -I.
