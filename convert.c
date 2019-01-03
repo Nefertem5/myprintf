@@ -2,16 +2,10 @@
 
 t_specifier	*convert_big(t_specifier *spec)
 {
-	if (spec->specifier == 'D' || spec->specifier == 'S' ||
-			spec->specifier == 'C' || spec->specifier == 'O' ||
-			spec->specifier == 'U')
+	if (spec->specifier == 'S' || spec->specifier == 'O' || spec->specifier == 'U')
 		spec->size = L;
-	if (spec->specifier == 'D')
-		spec->specifier = 'd';
 	if (spec->specifier == 'S')
 		spec->specifier = 's';
-	if (spec->specifier == 'C')
-		spec->specifier = 'c';
 	if (spec->specifier == 'O')
 		spec->specifier = 'o';
 	if (spec->specifier == 'U')
@@ -22,13 +16,11 @@ t_specifier	*convert_big(t_specifier *spec)
 int			ft_convert(t_specifier spec, va_list list)
 {
 	int	i;
-	static t_convert	(convert[14]) = {
+	static t_convert	(convert[12]) = {
 		{ .specifier = 's', .f = handle_str },
-		{ .specifier = 'S', .f = handle_str },
 		{ .specifier = 'c', .f = handle_char },
-		{ .specifier = 'C', .f = handle_char },
-		{ .specifier = 'd', .f = handle_char },
-		{ .specifier = 'i', .f = handle_char },
+        { .specifier = 'd', .f = handle_int },
+        { .specifier = 'i', .f = handle_int },
 		{ .specifier = 'x', .f = handle_char },
 		{ .specifier = 'X', .f = handle_char },
 		{ .specifier = 'p', .f = handle_char },
@@ -40,7 +32,7 @@ int			ft_convert(t_specifier spec, va_list list)
 	};
 
 	i = -1;
-	while (++i < 14)
+	while (++i < 12)
 	{
 		if (spec.specifier == convert[i].specifier)
 			return(convert[i].f(list, spec));
