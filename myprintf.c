@@ -86,9 +86,11 @@ int		ft_printf(char *format, ...)
 #include <stdio.h>
 int main(void)
 {
-	char a = 'a';
-	//char b = 'a';
-    printf("original: lol%-10.2slol%%lol%Clol\n", "checkkkkk", a);
-    ft_printf("test:     lol%-10.2slol%%lol%clol\n", "checkkkkk", a);
+    int a = -123567868;
+
+    printf("original: lol%-10.2slol%%lol%clol\n", "checkkkkkt", 'a');
+    ft_printf("test:     lol%-10.2slol%%lol%clol\n", "checkkkkk", 'a');
+    printf("original: lol%15.15dlol%%lol%+14.8ilol\n", a, 1488);
+    ft_printf("test:     lol%15.15dlol%%lol%+14.8ilol\n", a, 1488);
 	return 0;
 }

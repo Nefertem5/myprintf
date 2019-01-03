@@ -49,10 +49,7 @@ int			handle_str(va_list list, t_specifier spec)
 		str = "(null)";
 	len = ft_strlen(str);
 	if (spec.accur > len)
-	{
-		spec.accur = len;
-		accur = spec.accur;
-	}
+		accur = len;
 	else
 		accur = spec.accur;
 	if ((spec.flags->minus != 1) && spec.width > accur)

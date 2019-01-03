@@ -24,7 +24,7 @@ typedef struct s_flags
 **  HH(hh) = signed char
 **  H(h) = short int
 **  LL(ll) = long long int
-**  LLL(L) = __int64
+**  LLL(L) = long double
 */
 
 typedef enum 	s_size_modifier
@@ -102,6 +102,15 @@ int			write_int(char c);
 int			write_repeat_int(char c, int len);
 int			handle_char(va_list list, t_specifier spec);
 int			handle_str(va_list list, t_specifier spec);
+
+/*
+** from handle_int.c
+*/
+
+int			digit_len(long long a);
+char		*utiltoa(long long a, char sign, t_specifier spec);
+int			handle_int(va_list list, t_specifier spec);
+long long	handle_size(va_list list, t_specifier spec);
 
 /*
 ** from utils.c
