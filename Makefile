@@ -1,6 +1,6 @@
 NAME	=	libftprintf.a
 CC		=	gcc
-FLAGS	=	-Wall -Wextra -Werror -g
+FLAGS	=	-Wall -Wextra -g
 SRC		=	$(wildcard *.c)
 OBJ		=	$(SRC:.c=.o)
 

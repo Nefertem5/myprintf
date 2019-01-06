@@ -50,6 +50,8 @@ int			handle_str(va_list list, t_specifier spec)
 	len = ft_strlen(str);
 	if (spec.accur > len)
 		accur = len;
+	else if (spec.accur == -1)
+		accur = len;
 	else
 		accur = spec.accur;
 	if ((spec.flags->minus != 1) && spec.width > accur)

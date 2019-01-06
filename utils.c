@@ -44,7 +44,7 @@ int		is_valid_spec(t_specifier **sp, int	*done)
 {
 	if (!*sp)
 		handle_error(0, NULL);
-	if (!ft_strchr("dioOuUxXscCpfbrkge", (*sp)->specifier))
+	if (!ft_strchr("dDiouxXsScCpfFbrkge%", (*sp)->specifier))
 	{
 		ft_putchar((*sp)->specifier);
 		(*done)++;

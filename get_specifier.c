@@ -60,16 +60,16 @@ int			get_accur(char *fmt, int *i)
 			(*i)++;
 		return (accur);
 	}
-	return (0);
+	return (-1);
 }
 
-int			get_sizemodifier(char *fmt, int *i)
+void		get_sizemodifier(char *fmt, int *i, t_specifier *spec)
 {
 	t_size_modifier	size;
 
 	size = NO;
 	if (!is_size(fmt[*i]))
-		return (0);
+		return ;
 	if (fmt[*i] == 'l')
 	{
 		if (fmt[*i + 1] == 'l' && ++(*i))
@@ -86,18 +86,25 @@ int			get_sizemodifier(char *fmt, int *i)
 	}
 	else if (fmt[*i] == 'L')
 		size = LLL;
-	return (size);
+	spec->size = size;
+	(*i)++;
 }
 
-int			get_spec(char *str, int *i)
+void		get_spec(char *str, int *i, t_specifier	*sp)
 {
-	int result;
+	int			result;
 
 	result = 0;
-	if (is_type(str[*i]))
+	if (ft_strchr("ABCDEGHIJKLMNOPQRTUVWYZ", str[*i]))
+	{
+		sp->big_specifier = (int)str[*i];
+		result = 'D';
+		(*i)++;
+	}
+	else if (is_type(str[*i]))
 	{
 		result = (int)str[*i];
 		(*i)++;
 	}
-	return (result);
+	sp->specifier = result;
 }

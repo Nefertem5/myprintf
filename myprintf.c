@@ -11,14 +11,14 @@ t_specifier	*create_specifier(char *fmt, int *i)
 	sp->accur = 0;
 	sp->width = get_width(fmt, i);
 	sp->accur = get_accur(fmt, i);
-	sp->size = get_sizemodifier(fmt, i);
-	sp->specifier = (char)get_spec(fmt, i);
+	get_sizemodifier(fmt, i, sp);
+	get_spec(fmt, i, sp);
 	if (!sp->flags)
 		handle_error(0, &sp);
 	return (convert_big(sp));
 }
 
-int		check_spec(va_list list, int *i, char *fmt)
+int			check_spec(va_list list, int *i, char *fmt)
 {
 	t_specifier	*sp;
 	int			result;
@@ -42,7 +42,7 @@ int		check_spec(va_list list, int *i, char *fmt)
 	return (result);
 }
 
-int		ft_printf1(va_list list, char *format)
+int			ft_printf1(va_list list, char *format)
 {
 	int	i;
 	int	result;
@@ -71,7 +71,7 @@ int		ft_printf1(va_list list, char *format)
 	return (result);
 }
 
-int		ft_printf(char *format, ...)
+int			ft_printf(char *format, ...)
 {
 	va_list		list;
 	int			print;
@@ -80,16 +80,4 @@ int		ft_printf(char *format, ...)
 	print = ft_printf1(list, format);
 	va_end(list);
 	return (print);
-}
-
-#include <stdio.h>
-int main(void)
-{
-    int a = -123567868;
-
-    printf("original: lol%-10.2slol%%lol%clol\n", "checkkkkkt", 'a');
-    ft_printf("test:     lol%-10.2slol%%lol%clol\n", "checkkkkk", 'a');
-    printf("original: lol%15.15dlol%%lol%+14.8ilol\n", a, 1488);
-    ft_printf("test:     lol%15.15dlol%%lol%+14.8ilol\n", a, 1488);
-	return 0;
 }
