@@ -11,6 +11,7 @@ int			write_repeat_int(char c, int len)
 	int		result;
 
 	i = 0;
+	result = 0;
 	while (i < len)
 	{
 		result += write_int(c);

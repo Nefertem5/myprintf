@@ -1,6 +1,6 @@
 NAME	=	libftprintf.a
 CC		=	gcc
-FLAGS	=	-Wall -Wextra -g
+FLAGS	=	-Wall -Wextra -Werror -g
 SRC		=	$(wildcard *.c)
 OBJ		=	$(SRC:.c=.o)
 
@@ -8,9 +8,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/
-	#ar -rcs $(NAME) $(OBJ)
-	$(CC) $(FLAGS) -o test $(OBJ) -L libft/ -lft
-
+	ar -rcs $(NAME) $(OBJ)
 
 %.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@ -I.

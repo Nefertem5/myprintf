@@ -31,7 +31,7 @@ void		int_to_str(int number, char *str, int len)
 char		*utilftoa(long double number, t_specifier spec, char sign)
 {
 	int			intpart;
-	float		fpart;
+	long double	fpart;
 	float		ffpart;
 	int			len;
 	int			accur;
@@ -51,7 +51,7 @@ char		*utilftoa(long double number, t_specifier spec, char sign)
 		accur = spec.accur;
 	else if (spec.accur == -1)
 		accur = 6;
-	if (spec.flags->zero == 1)
+	if (spec.flags->zero == 1 && spec.width > len)
 	{
 		nmbr_zeros = spec.width - len - accur - 1;
 		if (spec.flags->cage == 0 && spec.accur == 0)
@@ -69,13 +69,22 @@ char		*utilftoa(long double number, t_specifier spec, char sign)
 		return (str);
 	if ((fstr = ft_strnew((size_t)accur + 1)) == NULL)
 		return (NULL);
+	len = 0;
 	if (accur != 0)
 	{
 		fpart *= ft_pow(10, accur);
+		while (fpart > 999999999)
+		{
+			fpart /= 10;
+			accur--;
+			len++;
+		}
 		intpart = fpart;
 		ffpart = fpart - (int)intpart;
 		if (ffpart >= 0.5)
 			fpart += 1;
+		while (len--)
+			fstr[len + accur + 1] = '0';
 		int_to_str(fpart, fstr, accur + 1);
 	}
 	fstr[0] = '.';

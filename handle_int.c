@@ -85,9 +85,8 @@ char		*utiltoa(long long a, char sign, t_specifier spec)
 		nmbr_zeros = spec.width - len;
 	sign_len = (sign ? 1 : 0);
 	len = len + sign_len + nmbr_zeros;
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
+	if ((str = ft_strnew((size_t)len)) == NULL)
+		return (NULL);;
 	if (spec.flags->zero == 1 && sign_len && nmbr_zeros > 0)
 		len--;
 	while (len--)
