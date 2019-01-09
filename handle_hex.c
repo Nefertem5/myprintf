@@ -53,13 +53,15 @@ char				*hextoa(unsigned long long a, t_specifier spec)
 	if (spec.accur < len && spec.accur >= 0)
 		nmbr_zeros = 0;
 	len += nmbr_zeros;
+	if (spec.specifier == 'o' && spec.accur > 0 && spec.flags->cage == 1)
+		len -= 1;
 	if ((str = ft_strnew((size_t)len)) == NULL)
 		return (NULL);
 	if (spec.specifier == 'o')
 	{
-		while (len - 1 - len_cage >= 0)
+		while (len - 1 >= 0)
 		{
-			str[len - 1 - len_cage] = a % 8 + '0';
+			str[len - 1] = a % 8 + '0';
 			a /= 8;
 			len--;
 		}
@@ -114,17 +116,24 @@ int					check_zero(t_specifier spec, unsigned long long number)
 			result += write_repeat_int(' ', spec.width - spec.accur);
 		return(result);
 	}
-	if (spec.accur == 0 && number == 0 && spec.flags->cage == 0)
-		return (result);
-	else if (spec.accur == -1)
+	else if (spec.specifier == 'o' && spec.accur == 0)
 	{
-		result += write_int('0');	
-		return (result);
+		if (spec.flags->minus != 1)
+			result += write_repeat_int(' ', spec.width - spec.flags->cage);
+		if (spec.flags->cage == 1)	
+			result += write_int('0');
+		if (spec.flags->minus == 1)
+			result += write_repeat_int(' ', spec.width - spec.flags->cage);
+		return(result);
 	}
-    else if (spec.accur == 0 && spec.flags->cage == 1)
-	{	
-		result += write_int('0');
-		return (result);
+	else if (spec.specifier == 'o' && spec.accur > 0)
+	{
+		if (spec.flags->minus != 1)
+			result += write_repeat_int(' ', spec.width - spec.accur);
+		result += write_repeat_int('0', spec.accur);
+		if (spec.flags->minus == 1)
+			result += write_repeat_int(' ', spec.width - spec.accur);
+		return(result);
 	}
 }
 

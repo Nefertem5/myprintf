@@ -119,7 +119,7 @@ long long			handle_size(va_list list, t_specifier spec);
 ** from handle_float.c
 */
 
-void				int_to_str(int number, char *str, int *i, int j);
+void				int_to_str(int number, char *str, int len);
 char				*utilftoa(long double number, t_specifier spec, char sign);
 int					handle_float(va_list list, t_specifier spec);
 long long			ft_pow(long long base, long long power);
