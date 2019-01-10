@@ -77,7 +77,7 @@ int			my_printf(char *format, ...)
 	int			print;
 
 	va_start(list, format);
-	print = ft_printf1(list, format);
+	print = my_printf1(list, format);
 	va_end(list);
 	return (print);
 }
