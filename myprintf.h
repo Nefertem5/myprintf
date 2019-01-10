@@ -130,8 +130,8 @@ long long			ft_pow(long long base, long long power);
 
 t_specifier			*create_specifier(char *fmt, int *i);
 int					check_spec(va_list list, int *counter, char *fmt);
-int					my_printf1(va_list list, char *format);
-int					my_printf(char *format, ...);
+int					ft_printf1(va_list list, char *format);
+int					ft_printf(char *format, ...);
 
 /*
 ** from utils.c

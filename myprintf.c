@@ -42,7 +42,7 @@ int			check_spec(va_list list, int *i, char *fmt)
 	return (result);
 }
 
-int			my_printf1(va_list list, char *format)
+int			ft_printf1(va_list list, char *format)
 {
 	int	i;
 	int	result;
@@ -71,13 +71,13 @@ int			my_printf1(va_list list, char *format)
 	return (result);
 }
 
-int			my_printf(char *format, ...)
+int			ft_printf(char *format, ...)
 {
 	va_list		list;
 	int			print;
 
 	va_start(list, format);
-	print = my_printf1(list, format);
+	print = ft_printf1(list, format);
 	va_end(list);
 	return (print);
 }
