@@ -83,7 +83,7 @@ char				*hextoa(unsigned long long a, t_specifier spec)
 	return (str);
 }
 
-int					check_zero(t_specifier spec, unsigned long long number)
+int					check_zero(t_specifier spec)
 {
 	int result;
 
@@ -135,6 +135,7 @@ int					check_zero(t_specifier spec, unsigned long long number)
 			result += write_repeat_int(' ', spec.width - spec.accur);
 		return(result);
 	}
+	return (result);
 }
 
 int					handle_hex(va_list list, t_specifier spec)
@@ -150,7 +151,7 @@ int					handle_hex(va_list list, t_specifier spec)
 	number = handle_size_hex(list, spec);
 	if (number == 0)
 	{	
-		result += check_zero(spec, number);
+		result += check_zero(spec);
 		return (result);
 	}
 	if (spec.accur > 0 && spec.flags->zero == 1)

@@ -16,6 +16,7 @@ int			handle_big(va_list list, t_specifier spec)
 	int		i;
 
 	result = 0;
+	(void)list;
 	result += write_int('%');
 	if (spec.specifier == '%')
 		return (result);
